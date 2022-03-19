@@ -1,1 +1,2 @@
-# smart-garden
+# toilaai-hcmut
+npm install react-scripts

@@ -1,0 +1,52 @@
+.content {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+}
+
+.content .header {
+    text-align: left;
+    height: 160px;
+}
+
+.content .body {
+    margin: 0 auto;
+}
+
+.content .body .card{
+    display: inline-block;
+    border-radius: 7px;
+    box-shadow: 0 4px 4px #ccc;
+    background-color: white;
+    width: 1000px;
+    padding : 8px;
+    margin: 60px;
+    display: flex;
+    flex-flow: row;
+}
+
+.content .body .card .sensor{
+    width: 250px;
+    margin: auto 0;
+    padding-left: 20px;
+}
+
+.content .body .card .value{
+    width: 450px;
+}
+
+.content .body .card .value h1{
+    font-size: 30px;
+}
+
+.content .body .card .time{
+    margin: auto 0;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+h1 {
+    font-size: xx-large;
+}
