@@ -39,7 +39,7 @@ function Sidebar() {
                                 <Menu className="top" mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%' }}>
                                     <Menu key="1" icon={<FiHome />} title=" Dashboard">
                                         <Menu.Item key="2" icon={<FiHome />}>
-                                            <Link to="/">Dashboard</Link>
+                                            <Link to="/dashboard">Dashboard</Link>
                                         </Menu.Item>
                                     </Menu>
                                     <Menu key="3" icon={<FiUser />} title=" Account">
@@ -78,7 +78,7 @@ function Sidebar() {
                                     <Switch>
                                         <Suspense fallback={<h1>....</h1>}>
                                             <Route exact path="/dashboard">
-                                                <Sensor />
+                                                <Dashboard />
                                             </Route>
                                             <Route exact path="/sensor">
                                                 <Sensor />
