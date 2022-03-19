@@ -42,7 +42,7 @@ function Sidebar(){
             >
               <Menu key="1" icon={<FiHome />} title=" Dashboard">
                 <Menu.Item key="2" icon={<FiHome />}>
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link to="/">Dashboard</Link>
                 </Menu.Item>
               </Menu>
               <Menu key="3" icon={<FiUser />} title=" Account">
@@ -80,7 +80,7 @@ function Sidebar(){
                 <Switch>
                     <Suspense fallback={<h1>....</h1>}>
                     <Route exact path="/dashboard">
-                        <Dashboard />
+                        <Sensor/>
                     </Route>
                     <Route exact path="/sensor">
                         <Sensor />
