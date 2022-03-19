@@ -16,9 +16,9 @@ function Motor() {
                     <div className="site-card-border-less-wrapper">
                         <Card title="Pump" bordered={false} style={{ margin: 50, width: 300, height: 300, borderRadius: 7}}>
                         <div style={{ textAlign: 'center', marginTop: 50}}>
-                            <span style = {{ fontSize: 30, fontWeight: 300, marginTop: 50}}>ON</span> 
+                            <span style = {{ fontSize: 30, fontWeight: 300, marginTop: 50}}>OFF</span> 
                             <Switch style = {{ height: 35, width: 90, marginLeft: 20, marginRight: 20}} defaultChecked onChange={onChange} /> 
-                            <span style = {{ fontSize: 30, fontWeight: 300}}>OFF</span>
+                            <span style = {{ fontSize: 30, fontWeight: 300}}>ON</span>
                         </div>
                         </Card>
                     </div>
@@ -27,9 +27,9 @@ function Motor() {
                 <div className="site-card-border-less-wrapper">
                         <Card title="Light" bordered={false} style={{ margin: 50, width: 300, height: 300, borderRadius: 7}}>
                         <div style={{ textAlign: 'center', marginTop: 50}}>
-                            <span style = {{ fontSize: 30, fontWeight: 300, marginTop: 50}}>ON</span> 
+                            <span style = {{ fontSize: 30, fontWeight: 300, marginTop: 50}}>OFF</span> 
                             <Switch style = {{ height: 35, width: 90, marginLeft: 20, marginRight: 20}} defaultChecked onChange={onChange} /> 
-                            <span style = {{ fontSize: 30, fontWeight: 300}}>OFF</span>
+                            <span style = {{ fontSize: 30, fontWeight: 300}}>ON</span>
                         </div>
                         </Card>
                     </div>
