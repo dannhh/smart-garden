@@ -1,0 +1,20 @@
+.st-account {
+    margin-top: 20px;
+    border-radius: 7px;
+    background-color: white;
+    padding: 20px;
+}
+.st-account h3 {
+    font-weight: 300;
+    font-size: 15px;
+}
+.st-body {
+    max-width: 700px;
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .st-body {
+        margin-left: 100px;
+    }
+}

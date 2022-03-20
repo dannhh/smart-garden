@@ -8,27 +8,21 @@ const { Search } = Input;
 const data = [
     {
         key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
+        time: 'Sun Mar 20 01:20:23',
+        value: 32,
+        status: 'Warning',
     },
     {
         key: '2',
-        name: 'Joe Black',
-        age: 42,
-        address: 'London No. 1 Lake Park',
+        time: 'Sun Mar 20 01:20:24',
+        value: 42,
+        status: 'Normal',
     },
     {
         key: '3',
-        name: 'Jim Green',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Jim Red',
-        age: 32,
-        address: 'London No. 2 Lake Park',
+        time: 'Sun Mar 20 01:20:24',
+        value: 32,
+        status: 'Warning',
     },
 ]
 
@@ -36,13 +30,13 @@ const data = [
 const data_temp = [
     {
         key: '1',
-        time: '01:05:07',
+        time: 'Sun Mar 20 01:05:07',
         value: 32,
         status: 'ON',
     },
     {
         key: '2',
-        time: '01:05:08',
+        time: 'Sun Mar 20 01:05:08',
         value: 34,
         status: 'OFF',
     },
@@ -53,22 +47,22 @@ function History() {
 
     const columns = [
         {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-            width: '30%',
+            title: 'Time',
+            dataIndex: 'time',
+            key: 'time',
+            width: '40%',
         },
         {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-            width: '20%',
+            title: 'Value',
+            dataIndex: 'value',
+            key: 'value',
+            width: '40%',
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-            sorter: (a, b) => a.address.length - b.address.length,
+            title: 'Status',
+            dataIndex: 'status',
+            key: 'status',
+            sorter: (a, b) => a.status.length - b.status.length,
             sortDirections: ['descend', 'ascend'],
         },
     ];
@@ -78,13 +72,13 @@ function History() {
             title: 'Time',
             dataIndex: 'time',
             key: 'time',
-            width: '30%',
+            width: '40%',
         },
         {
             title: 'Value',
             dataIndex: 'value',
             key: 'value',
-            width: '20%',
+            width: '40%',
         },
         {
             title: 'Status',

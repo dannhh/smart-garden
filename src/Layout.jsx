@@ -18,6 +18,7 @@ import Sensor from './user/Sensor';
 import History from './user/History';
 import Motor from './user/Motor';
 import Dashboard from './user/Dashboard';
+import Setting from './admin/Setting';
 import './Layout.css'
 
 const { SubMenu } = Menu;
@@ -34,7 +35,7 @@ function Sidebar() {
             <Layout>
                 <Content>
                     <Layout className="site-layout-background">
-                        <Sider className="site-layout-background" width={250}>
+                        <Sider className="site-layout-background" width={250} style={{overflow: 'auto',height: '100vh',position: 'fixed',left: 0, top: 0, bottom: 0}}>
                             <div className="menu">
                                 <Menu className="top" mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%' }}>
                                     <Menu key="1" icon={<FiHome />} title=" Dashboard">
@@ -61,6 +62,11 @@ function Sidebar() {
                                             <Link to="/history">History</Link>
                                         </Menu.Item>
                                     </SubMenu>
+                                    <Menu key="9" icon={<FiUser />} title=" Setting">
+                                        <Menu.Item key="10" icon={<FiUser />}>
+                                            <Link to="/setting"> Setting</Link>
+                                        </Menu.Item>
+                                    </Menu>
                                 </Menu>
                                 <Menu className="bottom">
                                     <Menu.Item key="9" icon={<FiLogOut />}>
@@ -68,11 +74,8 @@ function Sidebar() {
                                     </Menu.Item>
                                 </Menu>
                             </div>
-                            
-                            
-
                         </Sider>
-                        <Layout className="site-layout">
+                        <Layout className="site-layout" style={{ marginLeft: 250 }}>
                             <Content style={{ margin: '0 16px' }}>
                                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                                     <Switch>
@@ -88,6 +91,9 @@ function Sidebar() {
                                             </Route>
                                             <Route exact path="/history">
                                                 <History />
+                                            </Route>
+                                            <Route exact path="/setting">
+                                                <Setting />
                                             </Route>
                                         </Suspense>
                                     </Switch>
