@@ -20,9 +20,9 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
     return (
         <Modal
             visible={visible}
-            title="Create a new collection"
-            okText="Create"
-            cancelText="Cancel"
+            title="Update your password"
+            okText="Update"
+            cancelText="Discard"
             onCancel={onCancel}
             onOk={() => {
                 form
@@ -45,25 +45,28 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                 }}
             >
                 <Form.Item
-                    name="title"
-                    label="Title"
+                    name="Your old password"
+                    label="Your old password"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input the title of collection!',
+                            message: 'Please input this field!',
                         },
                     ]}
                 >
-                    <Input />
+                <Input />
                 </Form.Item>
-                <Form.Item name="description" label="Description">
-                    <Input type="textarea" />
-                </Form.Item>
-                <Form.Item name="modifier" className="collection-create-form_last-form-item">
-                    <Radio.Group>
-                        <Radio value="public">Public</Radio>
-                        <Radio value="private">Private</Radio>
-                    </Radio.Group>
+                <Form.Item
+                    name="New password"
+                    label="New password"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input this field!',
+                        },
+                    ]}
+                >
+                <Input />
                 </Form.Item>
             </Form>
         </Modal>
