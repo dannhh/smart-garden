@@ -1,48 +1,65 @@
 .content {
     display: flex;
     flex-flow: column;
-    height: 100vh;
+    height: auto;
 }
 
 .content .header {
     text-align: left;
-    height: 160px;
+    height: 120px;
 }
 
 .content .body {
     margin: 0 auto;
 }
 
-.content .body .card{
-    display: inline-block;
-    border-radius: 7px;
-    box-shadow: 0 4px 4px #ccc;
-    background-color: white;
-    width: 1000px;
-    padding : 8px;
-    margin: 60px;
+.content .body .current {
     display: flex;
     flex-flow: row;
 }
 
-.content .body .card .sensor{
-    width: 250px;
+.content .body .current .card{
+    display: inline-block;
+    border-radius: 7px;
+    box-shadow: 0 4px 4px #ccc;
+    background-color: white;
+    width: 300px;
+    padding : 8px;
+    margin-right: 120px;
+    display: flex;
+    flex-flow: column;
+}
+.content .body .current .card .top-info {
+    height: 140px;
+    width: 300px;
+    display: flex;
+    flex-flow: row;
+}
+
+.content .body .current .card .top-info .icon img{
+    height: 100px;
+    margin-right: 20px;
+}
+
+.content .body .current .card .top-info .value{
+    /* margin: 0 auto; */
+    width: 100%;
+    text-align: center;
+}
+
+.content .body .current .card .value h1{
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.content .body .current .card .time{
     margin: auto 0;
-    padding-left: 20px;
+    text-align: center;
 }
 
-.content .body .card .value{
-    width: 450px;
+.content .body .current .card .time .line{
+    border-top: 1px solid rgb(136, 136, 136);
 }
-
-.content .body .card .value h1{
-    font-size: 30px;
-}
-
-.content .body .card .time{
-    margin: auto 0;
-}
-
 h2 {
     font-weight: normal;
 }

@@ -7,20 +7,7 @@ import humidity from '../img/humidity-icon.png'
 import light from '../img/light-icon.png'
 
 
-// Web	https://io.adafruit.com/toilaaihcmut/feeds/bbc-temp
-// API	https://io.adafruit.com/api/v2/toilaaihcmut/feeds/bbc-temp
-// MQTT:	toilaaihcmut/feeds/bbc-temp
-
-// Web	https://io.adafruit.com/toilaaihcmut/feeds/bbc-humid
-// API	https://io.adafruit.com/api/v2/toilaaihcmut/feeds/bbc-humid
-// MQTT toilaaihcmut/feeds/bbc-humid
-
-// Web	https://io.adafruit.com/toilaaihcmut/feeds/bbc-temp1
-// API	https://io.adafruit.com/api/v2/toilaaihcmut/feeds/bbc-temp1
-// MQTT toilaaihcmut/feeds/bbc-temp1
-
-function Sensor() {
-
+function Garden() {
 
     return (
         <div className="content">
@@ -204,4 +191,4 @@ function Sensor() {
     )
 }
 
-export default Sensor
+export default Garden

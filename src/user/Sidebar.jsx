@@ -17,7 +17,8 @@ import {
 import Sensor from '../user/Sensor';
 import History from '../user/History';
 import Motor from '../user/Motor';
-import Dashboard from '../user/Dashboard';
+import Garden from '../user/Garden';
+import General from '../user/General';
 import Admin from '../admin/Sidebar';
 import '../styles/Sidebar.css'
 
@@ -38,9 +39,9 @@ function Sidebar() {
                         <Sider className="site-layout-background" width={250} style={{overflow: 'auto',height: '100vh',position: 'fixed',left: 0, top: 0, bottom: 0}}>
                             <div className="menu">
                                 <Menu className="top" mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%' }}>
-                                    <Menu key="1" icon={<FiHome />} title=" Dashboard">
+                                    <Menu key="1" icon={<FiHome />} title="General">
                                         <Menu.Item key="2" icon={<FiHome />}>
-                                            <Link to="/dashboard">Dashboard</Link>
+                                            <Link to="/general">General</Link>
                                         </Menu.Item>
                                     </Menu>
                                     <Menu key="3" icon={<FiUser />} title=" Account">
@@ -50,7 +51,7 @@ function Sidebar() {
                                     </Menu>
                                     <SubMenu key="sub1" icon={<FaLeaf />} title=" My garden">
                                         <Menu.Item key="5">
-                                            <Link to="/"> Information</Link>
+                                            <Link to="/garden"  id="garden-1"> Information</Link>
                                         </Menu.Item>
                                         <Menu.Item key="6">
                                             <Link to="/sensor">Sensor</Link>
@@ -80,8 +81,11 @@ function Sidebar() {
                                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                                     <Switch>
                                         <Suspense fallback={<h1>....</h1>}>
-                                            <Route exact path="/dashboard">
-                                                <Dashboard />
+                                            <Route exact path="/general">
+                                                <General />
+                                            </Route>
+                                            <Route exact path="/garden">
+                                                <Garden />
                                             </Route>
                                             <Route exact path="/sensor">
                                                 <Sensor />
@@ -99,7 +103,7 @@ function Sidebar() {
                                     </Switch>
                                 </div>
                             </Content>
-                            <Footer style={{ textAlign: 'center' }}>..</Footer>
+                            {/* <Footer style={{ textAlign: 'center' }}>..</Footer> */}
                         </Layout>
                     </Layout>
                 </Content>
