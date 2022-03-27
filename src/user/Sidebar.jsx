@@ -1,11 +1,15 @@
 
 import React, { Suspense } from "react";
 import 'antd/dist/antd.css';
-import '../index.css';
 import { Layout, Menu } from 'antd';
 //import icons from react icons
 import { FaLeaf } from "react-icons/fa";
 import { FiUser, FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
+import {
+    AppstoreOutlined,
+    CloudDownloadOutlined
+  } from '@ant-design/icons';
+  
 
 import {
     BrowserRouter as Router,
@@ -20,6 +24,7 @@ import Motor from '../user/Motor';
 import Garden from '../user/Garden';
 import General from '../user/General';
 import Admin from '../admin/Sidebar';
+import Account from '../user/Account';
 import '../styles/Sidebar.css'
 
 const { SubMenu } = Menu;
@@ -36,30 +41,44 @@ function Sidebar() {
             <Layout>
                 <Content>
                     <Layout className="site-layout-background">
-                        <Sider className="site-layout-background" width={250} style={{overflow: 'auto',height: '100vh',position: 'fixed',left: 0, top: 0, bottom: 0}}>
+                        <Sider className="site-layout-background"
+                            style={{
+                                overflow: 'auto',
+                                height: '100vh',
+                                position: 'fixed',
+                                left: 0,
+                                top: 0,
+                                bottom: 0,
+                            }}
+
+                            // breakpoint="lg"
+                            // collapsedWidth="0"
+                            // onBreakpoint={broken => {
+                            //     console.log(broken);
+                            // }}
+                            // onCollapse={(collapsed, type) => {
+                            //     console.log(collapsed, type);
+                            // }}
+                            >
                             <div className="menu">
-                                <Menu className="top" mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%' }}>
-                                    <Menu key="1" icon={<FiHome />} title="General">
-                                        <Menu.Item key="2" icon={<FiHome />}>
-                                            <Link to="/general">General</Link>
+                                <Menu className="top" mode="inline" defaultSelectedKeys={['1']} style={{ height: '100%' }}>
+                                    <Menu.Item key="1" icon={<FiHome />}>
+                                        General<Link to="/general"></Link>
+                                    </Menu.Item>
+                                    <Menu.Item key="2" icon={<FiUser />}>
+                                        <Link to="/account">Account</Link>
+                                    </Menu.Item>
+                                    <SubMenu key="sub1" icon={<CloudDownloadOutlined />} title= "My garden">
+                                        <Menu.Item key="3">
+                                            <Link to="/garden"> Information</Link>
                                         </Menu.Item>
-                                    </Menu>
-                                    <Menu key="3" icon={<FiUser />} title=" Account">
-                                        <Menu.Item key="4" icon={<FiUser />}>
-                                            <Link to="/"> Account</Link>
-                                        </Menu.Item>
-                                    </Menu>
-                                    <SubMenu key="sub1" icon={<FaLeaf />} title=" My garden">
-                                        <Menu.Item key="5">
-                                            <Link to="/garden"  id="garden-1"> Information</Link>
-                                        </Menu.Item>
-                                        <Menu.Item key="6">
+                                        <Menu.Item key="4">
                                             <Link to="/sensor">Sensor</Link>
                                         </Menu.Item>
-                                        <Menu.Item key="7">
+                                        <Menu.Item key="5">
                                             <Link to="/motor">Motor</Link>
                                         </Menu.Item>
-                                        <Menu.Item key="8">
+                                        <Menu.Item key="6">
                                             <Link to="/history">History</Link>
                                         </Menu.Item>
                                     </SubMenu>
@@ -98,6 +117,9 @@ function Sidebar() {
                                             </Route>
                                             <Route exact path="/admin">
                                                 <Admin />
+                                            </Route>
+                                            <Route exact path="/account">
+                                                <Account />
                                             </Route>
                                         </Suspense>
                                     </Switch>

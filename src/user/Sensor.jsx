@@ -1,25 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/Sensor.css'
 import { Line, defaults } from 'react-chartjs-2'
-import '../styles/Dashboard.css'
 import temperature from '../img/temperature-icon.png'
 import humidity from '../img/humidity-icon.png'
 import light from '../img/light-icon.png'
 
 
-// Web	https://io.adafruit.com/toilaaihcmut/feeds/bbc-temp
-// API	https://io.adafruit.com/api/v2/toilaaihcmut/feeds/bbc-temp
-// MQTT:	toilaaihcmut/feeds/bbc-temp
-
-// Web	https://io.adafruit.com/toilaaihcmut/feeds/bbc-humid
-// API	https://io.adafruit.com/api/v2/toilaaihcmut/feeds/bbc-humid
-// MQTT toilaaihcmut/feeds/bbc-humid
-
-// Web	https://io.adafruit.com/toilaaihcmut/feeds/bbc-temp1
-// API	https://io.adafruit.com/api/v2/toilaaihcmut/feeds/bbc-temp1
-// MQTT toilaaihcmut/feeds/bbc-temp1
+import io from 'socket.io-client';
+const sock = io.connect('http://localhost:5000');
 
 function Sensor() {
+
+    const [currentData, setCurrentData] = useState({});
+    const [recentData, setRecentData] = useState({
+        temp: [21, 20, 21, 22, 23, 24],
+        humid: [0.6, 0.5, 0.5, 0.4, 0.4, 0.5].map((h) => { return h; }),
+        light: [300, 350, 300, 420, 470, 420],
+    }); 
+
+    useEffect(() => {
+        sock.on('connect', () => { console.log("Successful"); });
+    
+        // It would be best to get feed_id ('bbc-test-json') from user info,
+        // not hard-coded like this
+        sock.on('bbc-test-json', (data) => { 
+            console.log(data);
+            setCurrentData(JSON.parse(data));
+        });
+    
+        return () => sock.removeAllListeners('bbc-test-json');
+    }, [])
 
 
     return (
@@ -36,7 +46,7 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Temperature</h2>
-                                <h1>40%</h1>
+                                <h1>{currentData?.temp || 'Null'}</h1>
                             </div>
                         </div>
                         <div className="time">
@@ -51,7 +61,7 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Humidity</h2>
-                                <h1>100%</h1>
+                                <h1>{currentData?.humid || 'Null'}</h1>
                             </div>
                         </div>
                         <div className="time">
@@ -66,7 +76,7 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Light</h2>
-                                <h1>60</h1>
+                                <h1>{currentData?.light || 'Null'}</h1>
                             </div>
                         </div>
                         <div className="time">
@@ -83,7 +93,7 @@ function Sensor() {
                             datasets: [
                                 {
                                     label: 'Temperature',
-                                    data: [12, 19, 3, 5, 2, 3],
+                                    data: recentData.temp,
                                     backgroundColor: [
                                         'rgba(54, 162, 235, 0.2)',
                                         'rgba(75, 192, 192, 0.2)',
@@ -97,7 +107,7 @@ function Sensor() {
                                 },
                                 {
                                     label: 'Humidity',
-                                    data: [10, 50, 60, 30, 20, 70],
+                                    data: recentData.humid,
                                     backgroundColor: [
                                         'rgba(54, 162, 235, 0.2)',
                                         'rgba(75, 192, 192, 0.2)',
@@ -150,8 +160,8 @@ function Sensor() {
                             labels: ['01:01:01', '01:01:02', '01:01:03', '01:01:04', '01:01:05', '01:01:06'],
                             datasets: [
                                 {
-                                    label: 'Temperature',
-                                    data: [12, 19, 3, 5, 2, 3],
+                                    label: 'Light',
+                                    data: recentData.light,
                                     backgroundColor: [
                                         'rgba(54, 162, 235, 0.2)',
                                         'rgba(75, 192, 192, 0.2)',

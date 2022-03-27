@@ -33,27 +33,38 @@ function Sidebar() {
             <Layout>
                 <Content>
                     <Layout className="site-layout-background">
-                        <Sider className="site-layout-background" width={250} style={{overflow: 'auto',height: '100vh',position: 'fixed',left: 0, top: 0, bottom: 0}}>
+                        <Sider className="site-layout-background"
+                            style={{
+                                overflow: 'auto',
+                                height: '100vh',
+                                position: 'fixed',
+                                left: 0,
+                                top: 0,
+                                bottom: 0,
+                            }}
+
+                            breakpoint="lg"
+                            collapsedWidth="0"
+                            onBreakpoint={broken => {
+                                console.log(broken);
+                            }}
+                            onCollapse={(collapsed, type) => {
+                                console.log(collapsed, type);
+                            }}>
                             <div className="menu">
                                 <Menu className="top" mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%' }}>
-                                    <Menu key="1" icon={<FiHome />} title=" Dashboard">
-                                        <Menu.Item key="2" icon={<FiHome />}>
-                                            <Link to="/setting">Dashboard</Link>
-                                        </Menu.Item>
-                                    </Menu>
-                                    <Menu key="3" icon={<FiHome />} title=" Dashboard">
-                                        <Menu.Item key="4" icon={<FiHome />}>
-                                            <Link to="/setting">Request</Link>
-                                        </Menu.Item>
-                                    </Menu>
-                                    <Menu key="5" icon={<FiHome />} title=" Dashboard">
-                                        <Menu.Item key="6" icon={<FiHome />}>
-                                            <Link to="/setting">Setting</Link>
-                                        </Menu.Item>
-                                    </Menu>
+                                    <Menu.Item key="1" icon={<FiHome />}>
+                                        <Link to="/setting">Dashboard</Link>
+                                    </Menu.Item>
+                                    <Menu.Item key="2" icon={<FiHome />}>
+                                        <Link to="/setting">Request</Link>
+                                    </Menu.Item>
+                                    <Menu.Item key="3" icon={<FiHome />}>
+                                        <Link to="/setting">Setting</Link>
+                                    </Menu.Item>
                                 </Menu>
                                 <Menu className="bottom">
-                                    <Menu.Item key="9" icon={<FiLogOut />}>
+                                    <Menu.Item key="5" icon={<FiLogOut />}>
                                         <Link to="/">Logout</Link>
                                     </Menu.Item>
                                 </Menu>

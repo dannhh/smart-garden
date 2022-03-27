@@ -3,6 +3,14 @@
     flex-flow: column;
     height: auto;
 }
+.db-chart {
+    display: block;
+    background-color: white;
+    margin-bottom: 40px;
+    padding: 40px;
+    border-radius: 7px;
+    max-width: 95%;
+}
 
 .content .header {
     text-align: left;
@@ -11,6 +19,7 @@
 
 .content .body {
     margin: 0 auto;
+    width: 100%;
 }
 
 .content .body .current {
@@ -23,15 +32,14 @@
     border-radius: 7px;
     box-shadow: 0 4px 4px #ccc;
     background-color: white;
-    width: 300px;
-    padding : 8px;
-    margin-right: 120px;
+    margin: 0 1.8%;
     display: flex;
     flex-flow: column;
+    width: 28%;
 }
 .content .body .current .card .top-info {
+    margin-top: 10px;
     height: 140px;
-    width: 300px;
     display: flex;
     flex-flow: row;
 }

@@ -15,13 +15,13 @@
     border-radius: 7px;
     box-shadow: 0 4px 4px #ccc;
     background-color: white;
-    width: 280px;
-    height: 420px;
-    padding : 8px;
-    margin-right: 120px;
+    margin: 0 1.8%;
     display: flex;
     flex-flow: column;
+    width: 28%;
+    height: fit-content;
 }
+
 
 .content .line .card:hover{
     transform: scale(1.03);
@@ -29,21 +29,22 @@
 }
 
 .content .line .card .image img {
-    margin: 15px;
-    width: 250px;
+    margin: 10%;
+    width: 80%;
 }
 
 .content .line .card .info h1 {
-    padding-left: 10px;
-    font-size: x-large;
+    padding-left: 10%;
+    font-size: 150%;
 }
 
 .content .line .card .info button{
-    margin-left: 100px;
+    margin-left: 25%;
     margin-top: 20px;
+    margin-bottom: 10px;
     font-size: 18px;
     height: 40px;
-    width: 150px;
+    width: 50%;
     border-radius: 5px;
     border: none;
     background: rgb(114, 214, 127);
