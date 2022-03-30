@@ -20,6 +20,7 @@
    margin: auto;
    width: fit-content;
    margin-top: 10px;
+   margin-bottom: 30px;
 }
 
 .ant-advanced-search-form {
@@ -48,4 +49,18 @@
     font-size: 3;
     color: white;
     border: #ffffff;
+}
+
+.button:visited {
+    color: rgb(114, 214, 127);
+}
+.ant-form-item {
+  margin-bottom: 15px;
+}
+
+@media only screen and (min-width: 500px) {
+  #advanced_search{
+    max-width: 900px;
+    margin: 0 auto;
+  }
 }

@@ -27,11 +27,14 @@ function Sensor() {
         // It would be best to get feed_id ('bbc-test-json') from user info,
         // not hard-coded like this
         axios.get('/history/bbc-test-json').then((response) => {
+            
             console.log(response.data)
-            setTemp(response.data.temp);
+            
+            var time = response.data.time.map(x => x.substring(11, 19));
+            setTemp(response.data.temp); 
             setHumid(response.data.humid);
             setLight(response.data.light);
-            setTime(response.data.time);
+            setTime(time);
         })
 
         sock.on('bbc-test-json', (data) => {
@@ -39,14 +42,15 @@ function Sensor() {
                 setCurrentData(JSON.parse(data));
                 // count = count + 1;
                 // if (count >= 101) {
+                    var time_real_time = response.data.time.substring(11, 19);
                     setTemp(temp => [...temp, response.data.temp])
-                    setTemp(temp => [...temp.slice(0, 0), ...temp.slice(1, 101)]);
+                    setTemp(temp => [...temp.slice(0, 0), ...temp.slice(1, 11)]);
                     setHumid(humid => [...humid, response.data.humid])
-                    setHumid(humid => [...humid.slice(0, 0), ...humid.slice(1, 101)]);
+                    setHumid(humid => [...humid.slice(0, 0), ...humid.slice(1, 11)]);
                     setLight(light => [...light, response.data.light])
-                    setLight(light => [...light.slice(0, 0), ...light.slice(1, 101)]);
-                    setTime(time => [...time, response.data.time]);
-                    setTime(time => [...time.slice(0, 0), ...time.slice(1, 101)])
+                    setLight(light => [...light.slice(0, 0), ...light.slice(1, 11)]);
+                    setTime(time => [...time, time_real_time]);
+                    setTime(time => [...time.slice(0, 0), ...time.slice(1, 11)])
                     setCurrentTime(response.data.time)
                 // }
                 // else {
@@ -167,6 +171,11 @@ function Sensor() {
                                 }
                             },
                             scales: {
+                                x: [{
+                                    ticks: {
+                                        display: false
+                                    }
+                                }],
                                 y: {
                                     type: 'linear',
                                     display: true,
