@@ -17,6 +17,7 @@ import {
 // import Dashboard from '../admin/Dashboard';
 // import Request from '../admin/Request';
 import Setting from '../admin/Setting';
+import AddUser from '../admin/AddUser';
 import '../styles/Sidebar.css'
 
 const { SubMenu } = Menu;
@@ -43,14 +44,15 @@ function Sidebar() {
                                 bottom: 0,
                             }}
 
-                            breakpoint="lg"
-                            collapsedWidth="0"
-                            onBreakpoint={broken => {
-                                console.log(broken);
-                            }}
-                            onCollapse={(collapsed, type) => {
-                                console.log(collapsed, type);
-                            }}>
+                            // breakpoint="lg"
+                            // collapsedWidth="0"
+                            // onBreakpoint={broken => {
+                            //     console.log(broken);
+                            // }}
+                            // onCollapse={(collapsed, type) => {
+                            //     console.log(collapsed, type);
+                            // }}
+                            >
                             <div className="menu">
                                 <Menu className="top" mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%' }}>
                                     <Menu.Item key="1" icon={<FiHome />}>
@@ -62,6 +64,9 @@ function Sidebar() {
                                     <Menu.Item key="3" icon={<FiHome />}>
                                         <Link to="/setting">Setting</Link>
                                     </Menu.Item>
+                                    <Menu.Item key="4" icon={<FiHome />}>
+                                        <Link to="/adduser">Add new user</Link>
+                                    </Menu.Item>
                                 </Menu>
                                 <Menu className="bottom">
                                     <Menu.Item key="5" icon={<FiLogOut />}>
@@ -70,7 +75,7 @@ function Sidebar() {
                                 </Menu>
                             </div>
                         </Sider>
-                        <Layout className="site-layout" style={{ /*marginLeft: 250*/ }}>
+                        <Layout className="site-layout" style={{ marginLeft: 280}}>
                             <Content style={{ margin: '0 16px' }}>
                                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                                     <Switch>
@@ -84,11 +89,14 @@ function Sidebar() {
                                             <Route exact path="/setting">
                                                 <Setting />
                                             </Route>
+                                            <Route exact path="/adduser">
+                                                <AddUser />
+                                            </Route>
                                         </Suspense>
                                     </Switch>
                                 </div>
                             </Content>
-                            <Footer style={{ textAlign: 'center' }}>..</Footer>
+                            {/* <Footer style={{ textAlign: 'center' }}>..</Footer> */}
                         </Layout>
                     </Layout>
                 </Content>

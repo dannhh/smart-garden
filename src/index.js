@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import SiderDemo from './user/Sidebar';
-
+import Login from './user/Login';
+import Sidebar from './admin/Sidebar';
 ReactDOM.render(
   <React.StrictMode>
     <SiderDemo />
+    {/* <Login /> */}
+    {/* <Sidebar /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
