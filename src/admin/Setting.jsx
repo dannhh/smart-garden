@@ -86,7 +86,7 @@ function Motor() {
     };
 
     return (
-        <div className='page'>
+        <div className='setting'>
             <h1 style={{ height: 150 }}>Settings</h1>
             <div className='st-body'>
             <Row>

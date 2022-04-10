@@ -134,7 +134,7 @@ function Account() {
         return children;
     };
     return (
-        <div className="content">
+        <div className="account">
             <div className="user-img">
                 <img src={gardenImg} alt="gardenImage" />
                 <h2>Toi la AI</h2>

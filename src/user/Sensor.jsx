@@ -11,6 +11,20 @@ import io from 'socket.io-client';
 const sock = io.connect('http://localhost:5000');
 
 function Sensor() {
+    var myVar;
+
+    // function myFunction() {
+    //     myVar = setTimeout(showPage, 3000);
+    // }
+
+    function showPage() {
+        if (document.getElementById("loader")){
+            document.getElementById("loader").style.display = "none";
+        }
+        if (document.getElementById("myDiv")){
+            document.getElementById("myDiv").style.display = "block";
+        }
+    }
 
     var [currentData, setCurrentData] = useState({});
     var [temp, setTemp] = useState([])
@@ -20,16 +34,19 @@ function Sensor() {
     var [currentTime, setCurrentTime] = useState(0)
     // var count = 0
 
-
     useEffect(() => {
-        sock.on('/current', () => { console.log("Successful"); });
-
-        // It would be best to get feed_id ('bbc-test-json') from user info,
-        // not hard-coded like this
-        axios.get('/history/bbc-test-json').then((response) => {
-            
-            console.log(response.data)
-            
+        // sock.on('/current', (data) => {
+        //     console.log(1)
+        //     setCurrentData(data);
+        // })
+        axios.get('/current').then((response) => {            
+            setCurrentData(response);
+            // setCurrentTime(response.data.time)
+            console.log(response.temp)
+            showPage()
+        })
+        
+        axios.get('/history/bbc-test-json/10').then((response) => {            
             var time = response.data.time.map(x => x.substring(11, 19));
             setTemp(response.data.temp); 
             setHumid(response.data.humid);
@@ -39,7 +56,7 @@ function Sensor() {
 
         sock.on('bbc-test-json', (data) => {
             axios.get('/current').then((response) => {
-                setCurrentData(JSON.parse(data));
+                console.log(2)
                 // count = count + 1;
                 // if (count >= 101) {
                     var time_real_time = response.data.time.substring(11, 19);
@@ -67,11 +84,12 @@ function Sensor() {
     }, [])
 
     return (
-        <div className="content">
+        <div className="content"  style={{margin:0}}>
+            <div id="loader"></div>
             <div className="header">
                 <h1>Information from sensors</h1>
             </div>
-            <div className="body">
+            <div style={{ display : "none"}} id="myDiv" className="body animate-bottom">
                 <div className="current">
                     <div className="card">
                         <div className="top-info">
@@ -80,12 +98,14 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Temperature</h2>
-                                <h1>{currentData?.temp || 'Null'}</h1>
+                                <h1 style={ (currentData.data?.temp >= 21 && currentData.data?.temp <= 35 )? {color:'#08f25e'} : {color:'#ff3333'}}>
+                                    {currentData.data?.temp}
+                                </h1>
                             </div>
                         </div>
                         <div className="time">
                             <div className="line"></div>
-                            <h2>{currentTime}</h2>
+                            <h2>{currentData.data?.time}</h2>
                         </div>
                     </div>
                     <div className="card">
@@ -95,12 +115,14 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Humidity</h2>
-                                <h1>{currentData?.humid || 'Null'}</h1>
+                                <h1 style={ (currentData.data?.humid >= 60 && currentData.data?.humid <= 80 )? {color:'#08f25e'} : {color:'#ff3333'}}>
+                                    {currentData.data?.humid}
+                                </h1>
                             </div>
                         </div>
                         <div className="time">
                             <div className="line"></div>
-                            <h2>{currentTime}</h2>
+                            <h2>{currentData.data?.time}</h2>
                         </div>
                     </div>
                     <div className="card">
@@ -110,12 +132,14 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Light</h2>
-                                <h1>{currentData?.light || 'Null'}</h1>
+                                <h1 style={ (currentData.data?.light >= 650 && currentData.data?.light <= 850 )? {color:'#08f25e'} : {color:'#ff3333'}}>
+                                    {currentData.data?.light}
+                                </h1>
                             </div>
                         </div>
                         <div className="time">
                             <div className="line"></div>
-                            <h2>{currentTime}</h2>
+                            <h2>{currentData.data?.time}</h2>
                         </div>
                     </div>
                 </div>

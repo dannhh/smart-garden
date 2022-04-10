@@ -25,6 +25,7 @@ import Garden from '../user/Garden';
 import General from '../user/General';
 import Admin from '../admin/Sidebar';
 import Account from '../user/Account';
+import HistoryMotor from '../user/HistoryMotor';
 import '../styles/Sidebar.css'
 
 const { SubMenu } = Menu;
@@ -120,6 +121,9 @@ function Sidebar() {
                                             </Route>
                                             <Route exact path="/account">
                                                 <Account />
+                                            </Route>
+                                            <Route exact path="/motorlog">
+                                                <HistoryMotor />
                                             </Route>
                                         </Suspense>
                                     </Switch>
