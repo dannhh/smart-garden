@@ -10,7 +10,7 @@ const { Content, Footer, Sider } = Layout;
 
 function Login() {
 	return (
-		<div className="login" style={{background: "rgb(198, 235, 203)", height: "100vh"}}>
+		<div>
 			<div id="padding"></div>
 			<div id="loginform">
 				<FormHeader title="Login" />

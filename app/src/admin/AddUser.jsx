@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styles/AddUser.css'
+import '../styles/Account.css'
 import gardenImg from '../img/plant-icon.png'
 import { Form, Row, Col, Input, Button, Select } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';

@@ -19,7 +19,6 @@ import Request from '../admin/Request';
 import Setting from '../admin/Setting';
 import AddUser from '../admin/AddUser';
 import '../styles/Sidebar.css'
-import UserDetail from "./UserDetail";
 
 const { SubMenu } = Menu;
 const { Content, Footer, Sider } = Layout;
@@ -83,9 +82,6 @@ function Sidebar() {
                                         <Suspense fallback={<h1>....</h1>}>
                                             <Route exact path="/dashboard">
                                                 <Dashboard />
-                                            </Route>
-                                            <Route exact path="/userdetail">
-                                                <UserDetail />
                                             </Route>
                                             <Route exact path="/sensor">
                                                 <Setting />

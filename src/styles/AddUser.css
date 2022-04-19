@@ -5,13 +5,12 @@
 }
 .user-img {
     width: fit-content;
-    margin: auto;
+    margin: 0 auto !important;
     border-radius: 50%;
 }
 
 .user-img img{
     width: 150px !important;
-    height: 150px;
     object-fit: cover;
     background-color:rgb(230, 230, 230);
     border-radius: 50%;

@@ -34,24 +34,22 @@
 }
 
 .content .line .card .info h1 {
+    padding-left: 10%;
     font-size: 150%;
-    text-align: center;
 }
 
 .content .line .card .info button{
+    margin-left: 25%;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 18px;
     height: 40px;
-    width: fit-content;
+    width: 50%;
     border-radius: 5px;
     border: none;
     background: rgb(114, 214, 127);
 }
 
-.content .line .card .info {
-    text-align: center;
-}
 #root > section > main > section > section > main > div > div > div > div > div.info > button > a{
     color: white;
 }

@@ -101,6 +101,9 @@ function Sidebar() {
                                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                                     <Switch>
                                         <Suspense fallback={<h1>....</h1>}>
+                                        <Route exact path="/">
+                                                <General />
+                                            </Route>
                                             <Route exact path="/general">
                                                 <General />
                                             </Route>

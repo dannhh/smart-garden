@@ -1,0 +1,122 @@
+.content {
+    display: flex;
+    flex-flow: column;
+    height: auto;
+}
+.db-chart {
+    display: block;
+    background-color: white;
+    margin-bottom: 40px;
+    padding: 40px;
+    border-radius: 7px;
+    max-width: 95%;
+}
+
+.content .header {
+    text-align: left;
+    height: 120px;
+}
+
+.content .body {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.content .body .current {
+    display: flex;
+    flex-flow: row;
+}
+
+.content .body .current .card{
+    display: inline-block;
+    border-radius: 7px;
+    box-shadow: 0 4px 4px #ccc;
+    background-color: white;
+    margin: 0 1.8%;
+    display: flex;
+    flex-flow: column;
+    width: 28%;
+}
+.content .body .current .card .top-info {
+    margin-top: 10px;
+    height: 140px;
+    display: flex;
+    flex-flow: row;
+}
+
+.content .body .current .card .top-info .icon img{
+    height: 100px;
+    margin-right: 20px;
+}
+
+.content .body .current .card .top-info .value{
+    /* margin: 0 auto; */
+    width: 100%;
+    text-align: center;
+}
+
+.content .body .current .card .value h1{
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.content .body .current .card .time{
+    margin: auto 0;
+    text-align: center;
+}
+
+.content .body .current .card .time .line{
+    border-top: 1px solid rgb(136, 136, 136);
+}
+h2 {
+    font-weight: normal !important;
+}
+
+h1 {
+    font-size: xx-large !important;
+}
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    margin: 0 -50;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+}
+#myDiv {
+    display: none;
+}

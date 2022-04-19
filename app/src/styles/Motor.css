@@ -1,0 +1,33 @@
+.ant-switch-handle {
+    width: 30px;
+    height: 30px;
+}
+.ant-switch-handle::before {
+    border-radius: 30px;
+    left: -10px;
+    right: 10px;
+}
+.ant-card-head {
+    font-size: 23px;
+    font-weight: 300;
+}
+.page {
+    height: 100vh;
+}
+
+.line {
+    display: flex;
+    flex-flow: row;
+    margin-top: 50px;
+    justify-content: center;
+}
+.line .card{
+    display: inline-block;
+    border-radius: 7px;
+    box-shadow: 0 4px 4px #ccc;
+    background-color: white;
+    margin: 0 5%;
+    flex-flow: row;
+    height: 300px;
+    width: 30%;
+}
