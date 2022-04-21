@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import '../styles/AddUser.css'
 import gardenImg from '../img/plant-icon.png'
 import { Form, Row, Col, Input, Button, Select } from 'antd';
@@ -14,7 +15,18 @@ const { Option } = Select;
 function AddUser() {
     const [form] = Form.useForm();
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+        console.log(values )
+        axios.post('/admin/add_user', {
+            name: values.firstname,
+            username : values.username,
+            password : values.password,
+            email : values.email,
+            phone : values.phone,
+            image : "",
+          })
+          .then(function (response) {
+            console.log(response);
+          })
     };
     const getFields = () => {
         const children = [];
@@ -63,8 +75,31 @@ function AddUser() {
             </Col>,
         );
 
+        children.push(
+            <Col span={12} key={9}>
+                Username
+                <Form.Item
+                    name={`username`}
+                >
+                    <Input placeholder="Username" />
+                </Form.Item>
+            </Col>,
+        );
+
+        children.push(
+            <Col span={12} key={11}>
+                Password
+                <Form.Item
+                    name={`password`}
+                >
+                    <Input placeholder="Password" type="password"/>
+                </Form.Item>
+            </Col>,
+        );
+
         return children;
     };
+
     return (
         <div className="content">
             <div className="user-img">

@@ -6,6 +6,7 @@
     margin-top: 50px;
 }
 
+
 .content .line {
     display: flex;
     flex-flow: row;
@@ -38,7 +39,7 @@
     text-align: center;
 }
 
-.content .line .card .info button{
+.content .line .card .info .user-button{
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 18px;
@@ -48,6 +49,17 @@
     border: none;
     background: rgb(114, 214, 127);
 }
+
+.content .adduser {
+    background-color: black;
+    color: white !important;
+}
+
+.content .adduser :hover {
+    background-color: white;
+    color: black !important;
+}
+
 
 .content .line .card .info {
     text-align: center;

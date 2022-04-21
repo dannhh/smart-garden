@@ -84,3 +84,13 @@
   background: #fff;
   border-color: #5c9863;
 }
+
+.payment-card {
+  display: inline-block;
+  border: 1.5px solid #eee;
+  box-shadow: 0 2px 2px #ccc;
+  width: 95%;
+  padding: 20px;
+  background-color: white ;
+  margin-bottom: 20px;
+}
