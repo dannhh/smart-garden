@@ -12,19 +12,26 @@ import {
 
 function General() {
     var [garden, setAllGarden] = useState()
-    const [editIndex, setEditIndex]= useState(null);
+    const [editIndex, setEditIndex] = useState(null);
     sessionStorage.setItem('user_id', 1)
     useEffect(() => {
         axios.get('/user/all_garden/' + sessionStorage.getItem('user_id')).then((response) => {
             setAllGarden(response.data)
         })
+        if (!sessionStorage.getItem('garden_id')) {
+            axios.get('/user/all_garden/' + sessionStorage.getItem('user_id')).then((response) => {
+                console.log(response)
+                sessionStorage.setItem('garden_id', response.data[0].gardenID)
+            })
+        }
     }, [])
+
     var click = false
-    function handleClick (e) {
+    function handleClick(e) {
         if (click == false) {
             sessionStorage.setItem('garden_id', e)
         }
-        click = true 
+        click = true
     }
     return (
         <div className="content">
