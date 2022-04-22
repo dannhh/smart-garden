@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import '../styles/Sensor.css'
+import '../styles/Dashboard.css'
 import axios from "axios";
 import '../styles/General.css'
 import gardenImg from '../img/garden.png'
@@ -27,6 +27,7 @@ function General() {
             setAllUser(response.data)
         })
     }, [])
+    var i = [0, 1, 2];
     const handleClick = () => {
         // axios.post('/admin/add_user', {
         //     name: values.firstname,
@@ -43,46 +44,70 @@ function General() {
 
     return (
         <div className="content">
-            <div className="line">
-                {
-                    allUser?.map((user, index) => {
+            {
+                allUser?.map((user, index) => {
+                    if (index % 3 == 0) {
                         return (
+                            <div className="line">
+                                {
+                                    i?.map((ind, index2) => {
+                                        if (allUser.length > ind + index) {
+                                            return (
 
-                            <div className="card">
-                                <div className="image">
-                                    <img src={gardenImg} alt="gardenImage" />
-                                </div>
-                                <div className="info">
-                                    <h1>{user.username}</h1>
-                                    <button onClick={handleClick}>
-                                        <AiOutlineDelete size={30} />
-                                    </button>
-                                    <button className="user-button">
-                                        <Link
-                                            to={{
-                                                pathname: `/userdetail`,
-                                                state: { users: user }
-                                            }}>
-                                            View Infomation
-                                        </Link>
+                                                <div className="card">
+                                                    <div
+                                                        style={{
+                                                            textAlign: 'right',
+                                                            marginRight: '1vw',
+                                                            marginTop: '1vw',
+                                                        }}>
+                                                        <button onClick={handleClick}
+                                                            style={{
+                                                                backgroundColor: 'rgb(219, 227, 220)',
+                                                                borderColor: 'rgb(219, 227, 220)'
+                                                            }}>
+                                                            <AiOutlineDelete size={25} />
+                                                        </button>
+                                                    </div>
+                                                    <div className="image">
+                                                        <img src={gardenImg} alt="gardenImage" />
+                                                    </div>
+                                                    <div className="info">
+                                                        <h1 className="title-card">{allUser[index + ind].username}</h1>
+                                                        <br></br>
+                                                        <button className="user-button">
+                                                            <Link
+                                                                to={{
+                                                                    pathname: `/userdetail`,
+                                                                    state: { users: allUser[index + ind] }
+                                                                }}
+                                                                style={{
+                                                                    fontSize: '1.5vw'
+                                                                }}>
+                                                                Detail
+                                                            </Link>
 
-                                    </button>
-                                </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            );
+                                        }
+                                    }
+                                    )
+                                }
                             </div>
-
-
                         );
-                    })
-                }
-            </div>
+                    }
+
+                })
+            }
             <div className="line">
                 <div className="card">
                     <div className="info">
 
-
                         <Link
                             to={{ pathname: `/adduser` }}>
-                            <AiFillPlusCircle size={100} />
+                            <AiFillPlusCircle size={60} style={{ color: 'rgb(166, 200, 170)' }} />
                             {/* <FontAwesomeIcon icon={FaUserPlus} /> */}
                         </Link>
 

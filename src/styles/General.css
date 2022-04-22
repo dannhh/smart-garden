@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: column;
     height: auto;
+    width: 100%;
     min-height: 100vh;
     margin-top: 50px;
 }
@@ -16,10 +17,10 @@
     border-radius: 7px;
     box-shadow: 0 4px 4px #ccc;
     background-color: white;
-    margin: 0 1.8%;
+    margin: 0 2%;
     display: flex;
     flex-flow: column;
-    width: 28%;
+    width: 25%;
     height: fit-content;
 }
 
@@ -30,8 +31,8 @@
 }
 
 .content .line .card .image img {
-    margin: 10%;
-    width: 80%;
+    margin:  5% 20%;
+    width: 60%;
 }
 
 .content .line .card .info h1 {
@@ -44,7 +45,7 @@
     margin-bottom: 20px;
     font-size: 18px;
     height: 40px;
-    width: fit-content;
+    width: 80%;
     border-radius: 5px;
     border: none;
     background: rgb(114, 214, 127);

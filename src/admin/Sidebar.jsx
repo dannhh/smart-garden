@@ -76,7 +76,7 @@ function Sidebar() {
                                 </Menu>
                             </div>
                         </Sider>
-                        <Layout className="site-layout" style={{ marginLeft: "280px"}}>
+                        <Layout className="site-layout" style={{ marginLeft: "200px"}}>
                             <Content style={{ margin: '0 16px' }}>
                                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                                     <Switch>

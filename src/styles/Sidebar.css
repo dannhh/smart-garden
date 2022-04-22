@@ -28,7 +28,7 @@ li.ant-menu-item.ant-menu-item-only-child.ant-menu-item-selected{
 #root > section > main > section > aside > div > div > ul.ant-menu.ant-menu-light.top.ant-menu-root.ant-menu-inline > li > div:hover
 {
     color: white;
-    background-color: rgb(114, 214, 127);
+    background-color: rgb(114, 214, 127) !important;
 }
 
 #root > section > main > section > aside > div > div > ul.ant-menu.ant-menu-light.top.ant-menu-root.ant-menu-inline > li > div:hover > i::before,
@@ -70,7 +70,12 @@ li.ant-menu-item.ant-menu-item-only-child.ant-menu-item-selected{
 }
 
 #root > section > main > section > aside > div > div > ul.ant-menu.ant-menu-light.top.ant-menu-root.ant-menu-inline > li.ant-menu-item.ant-menu-item-selected{
-    background-color:rgb(114, 214, 127);
+    background-color:rgb(114, 214, 127) !important;
+    color: white;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background-color:rgb(114, 214, 127) !important;
     color: white;
 }
 

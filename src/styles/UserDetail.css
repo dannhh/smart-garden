@@ -1,3 +1,33 @@
+.userinfo{
+    text-align: center
+}
 .payment-card {
-    max-width: 300px;
+    width: 80% !important;
+}
+.line{
+    display: flex;
+    flex-flow: row;
+    text-align: center;
+}
+.garden-card{
+    display: inline-block;
+    
+    margin: 0 5%;
+    box-shadow: 0 4px 4px #ccc;
+    background-color: white;
+    display: flex;
+    flex-flow: row;
+    width: 35%;
+    height: fit-content;
+}
+.image-garden{
+    width: 40%;
+}
+.img-garden{
+    /* margin:  5% 20%; */
+    width: 80%;
+}
+
+.info-garden{
+    width: 60%;
 }
