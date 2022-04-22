@@ -48,13 +48,13 @@ function General() {
                                                             marginRight: '1vw',
                                                             marginTop: '1vw',
                                                         }}>
-                                                        <button onClick={handleClick}
+                                                        {/* <button onClick={handleClick}
                                                             style={{
                                                                 backgroundColor: 'rgb(219, 227, 220)',
                                                                 borderColor: 'rgb(219, 227, 220)'
                                                             }}>
                                                             <AiOutlineDelete size={25} />
-                                                        </button>
+                                                        </button> */}
                                                     </div>
                                                     <div className="image">
                                                         <img src={gardenImg} alt="gardenImage" />
