@@ -54,7 +54,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                         },
                     ]}
                 >
-                <Input />
+                    <Input />
                 </Form.Item>
                 <Form.Item
                     name="New password"
@@ -66,7 +66,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                         },
                     ]}
                 >
-                <Input />
+                    <Input />
                 </Form.Item>
             </Form>
         </Modal>
@@ -89,84 +89,84 @@ function Motor() {
         <div className='setting'>
             <h1 style={{ height: 150 }}>Settings</h1>
             <div className='st-body'>
-            <Row>
-                <Col span={8}>
-                    <h3>Enable model</h3>
-                </Col>
-                <Col span={8} offset={2}>
-                    <Select defaultValue="off" style={{ width: 120 }} onChange={handleChange}>
-                        <Option value="off">OFF</Option>
-                        <Option value="on">ON</Option>
-                    </Select>
-                </Col>
-            </Row>
-            <Row style={{ marginTop: 20, marginBottom: 20 }}>
-                <Col span={8}>
-                    <h3>Set pagination</h3>
-                </Col>
-                <Col span={8} offset={2}>
-                    <Select defaultValue="5" style={{ width: 120 }} onChange={handleChange}>
-                        <Option value="5">5</Option>
-                        <Option value="10">10</Option>
-                        <Option value="15">15</Option>
-                        <Option value="20">20</Option>
-                        <Option value="20">25</Option>
-                        <Option value="20">50</Option>
-                    </Select>
-                </Col>
-            </Row>
+                <Row>
+                    <Col span={8}>
+                        <h3>Enable model</h3>
+                    </Col>
+                    <Col span={8} offset={5}>
+                        <Select defaultValue="off" style={{ width: 120 }} onChange={handleChange}>
+                            <Option value="off">OFF</Option>
+                            <Option value="on">ON</Option>
+                        </Select>
+                    </Col>
+                </Row>
+                <Row style={{ marginTop: 20, marginBottom: 20 }}>
+                    <Col span={8}>
+                        <h3>Set pagination</h3>
+                    </Col>
+                    <Col span={8} offset={5}>
+                        <Select defaultValue="5" style={{ width: 120 }} onChange={handleChange}>
+                            <Option value="5">5</Option>
+                            <Option value="10">10</Option>
+                            <Option value="15">15</Option>
+                            <Option value="20">20</Option>
+                            <Option value="20">25</Option>
+                            <Option value="20">50</Option>
+                        </Select>
+                    </Col>
+                </Row>
 
-            <Row>
-                <Col span={8}>
-                <h3>Edit this account</h3>
-                </Col>
-                <Col span={8} offset={2}>
-                <Button
-                    // type="primary"
-                    onClick={() => {
-                        setVisible(true);
-                    }}
-                >
-                    Update
-                </Button>
-                <CollectionCreateForm
-                    visible={visible}
-                    onCreate={onCreate}
-                    onCancel={() => {
-                        setVisible(false);
-                    }}
-                />
-                </Col>
-            </Row>
-            <div className='st-account'>
                 <Row>
                     <Col span={8}>
-                        <h3>Name</h3>
+                        <h3>Edit this account</h3>
                     </Col>
-                    <Col span={8} offset={8}>
-                        <h3>Jonny</h3>
-                    </Col>
-                    <Col>
-                    
-                    </Col>
-                </Row>
-                <Row>
-                    <Col span={8}>
-                        <h3>Username</h3>
-                    </Col>
-                    <Col span={8} offset={8}>
-                        <h3>jon_ny</h3>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col span={8}>
-                        <h3>Email</h3>
-                    </Col>
-                    <Col span={8} offset={8}>
-                        <h3>jon@ny.com</h3>
+                    <Col span={8} offset={5}>
+                        <Button
+                            // type="primary"
+                            onClick={() => {
+                                setVisible(true);
+                            }}
+                        >
+                            Update
+                        </Button>
+                        <CollectionCreateForm
+                            visible={visible}
+                            onCreate={onCreate}
+                            onCancel={() => {
+                                setVisible(false);
+                            }}
+                        />
                     </Col>
                 </Row>
-            </div>
+                <div className='st-account'>
+                    <Row>
+                        <Col span={8}>
+                            <h3>Name</h3>
+                        </Col>
+                        <Col span={8} offset={8}>
+                            <h3>Jonny</h3>
+                        </Col>
+                        <Col>
+
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={8}>
+                            <h3>Username</h3>
+                        </Col>
+                        <Col span={8} offset={8}>
+                            <h3>jon_ny</h3>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={8}>
+                            <h3>Email</h3>
+                        </Col>
+                        <Col span={8} offset={8}>
+                            <h3>jon@ny.com</h3>
+                        </Col>
+                    </Row>
+                </div>
             </div>
         </div>
     )
