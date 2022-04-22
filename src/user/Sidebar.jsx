@@ -21,7 +21,7 @@ import {
 import Sensor from '../user/Sensor';
 import History from '../user/History';
 import Motor from '../user/Motor';
-import Garden from '../user/Garden';
+import Information from './Information';
 import General from '../user/General';
 import Admin from '../admin/Sidebar';
 import Account from '../user/Account';
@@ -71,7 +71,7 @@ function Sidebar() {
                                     </Menu.Item>
                                     <SubMenu key="sub1" icon={<CloudDownloadOutlined />} title= "My garden">
                                         <Menu.Item key="3">
-                                            <Link to="/garden"> Information</Link>
+                                            <Link to="/information"> Information</Link>
                                         </Menu.Item>
                                         <Menu.Item key="4">
                                             <Link to="/sensor">Sensor</Link>
@@ -107,8 +107,8 @@ function Sidebar() {
                                             <Route exact path="/general">
                                                 <General />
                                             </Route>
-                                            <Route exact path="/garden">
-                                                <Garden />
+                                            <Route exact path="/information">
+                                                <Information />
                                             </Route>
                                             <Route exact path="/sensor">
                                                 <Sensor />

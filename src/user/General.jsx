@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import '../styles/General.css'
 import gardenImg from '../img/garden.png'
 
@@ -10,40 +11,45 @@ import {
 } from "react-router-dom";
 
 function General() {
-    function handleClickGarden(e){
-        var garden = document.getElementById("garden-1");
-        garden.click()
+    var [garden, setAllGarden] = useState()
+    const [editIndex, setEditIndex]= useState(null);
+    sessionStorage.setItem('user_id', 1)
+    useEffect(() => {
+        axios.get('/user/all_garden/' + sessionStorage.getItem('user_id')).then((response) => {
+            setAllGarden(response.data)
+        })
+    }, [])
+    var click = false
+    function handleClick (e) {
+        if (click == false) {
+            sessionStorage.setItem('garden_id', e)
+        }
+        click = true 
     }
     return (
         <div className="content">
             <div className="line">
-                <div className="card">
-                    <div className="image">
-                        <img src = { gardenImg} alt="gardenImage"/>
-                    </div>
-                    <div className="info">
-                        <h1>Khu vườn 1</h1>
-                        <button><Link to="/garden" onClick={handleClickGarden}>View Garden</Link></button>
-                    </div>
-                </div>
-                <div className="card">
-                    <div className="image">
-                        <img src = { gardenImg} alt="gardenImage"/>
-                    </div>
-                    <div className="info">
-                        <h1>Khu vườn 2</h1>
-                        <button><Link to="/garden" onClick={handleClickGarden}>View Garden</Link></button>
-                    </div>
-                </div>
-                <div className="card">
-                    <div className="image">
-                        <img src = { gardenImg} alt="gardenImage"/>
-                    </div>
-                    <div className="info">
-                        <h1>Khu vườn 3</h1>
-                        <button><Link to="/garden" onClick={handleClickGarden}>View Garden</Link></button>
-                    </div>
-                </div>
+                {
+                    garden?.map((gd, index) => {
+                        return (
+                            <div className="card">
+                                <div className="image">
+                                    <img src={gardenImg} alt="gardenImage" />
+                                </div>
+                                <div className="info">
+                                    <h1>{gd?.name}</h1>
+                                    <button id={index} onClick={() => handleClick(gd.gardenID)}>
+                                        <Link to={{
+                                            pathname: `/information`
+                                        }}>
+                                            View Garden
+                                        </Link>
+                                    </button>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </div>
         </div>
     )

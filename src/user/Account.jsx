@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import '../styles/Account.css'
 import gardenImg from '../img/plant-icon.png'
 import { Form, Row, Col, Input, Button, Select } from 'antd';
@@ -13,9 +14,29 @@ const { Option } = Select;
 
 function Account() {
     const [form] = Form.useForm();
+    const [user, setUser] = useState()
+    useEffect(() => {
+        axios.get('/user/account_information/' + sessionStorage.getItem('user_id')).then((response) => {
+            setUser(response.data)
+        })
+    }, [])
+
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+        console.log(values )
+        axios.post('/user/account_information/' + sessionStorage.getItem('user_id'), {
+            ID: sessionStorage.getItem('user_id'),
+            name: values.firstname,
+            username : values.username,
+            password : values.password,
+            email : values.email,
+            phone : values.phone,
+            image : "",
+          })
+          .then(function (response) {
+            console.log(response);
+          })
     };
+
     const getFields = () => {
         const children = [];
 
@@ -25,10 +46,11 @@ function Account() {
                 <Form.Item
                     name={`firstname`}
                 >
-                    <Input placeholder="Your firstname" />
+                    <Input placeholder={user?.name || "Your name"} value={user?.name}/>
                 </Form.Item>
             </Col>,
         );
+
 
         children.push(
             <Col span={12} key={2}>
@@ -46,13 +68,14 @@ function Account() {
                 </Form.Item>
             </Col>,
         );
+
         children.push(
             <Col span={12} key={3}>
-                Last name
+                Email
                 <Form.Item
-                    name={`lastname`}
+                    name={`email`}
                 >
-                    <Input placeholder="Your lastname" />
+                    <Input placeholder={user?.email || "Your email"} value={user?.email}/>
                 </Form.Item>
             </Col>,
         );
@@ -76,11 +99,11 @@ function Account() {
 
         children.push(
             <Col span={12} key={5}>
-                Email
+                Phone
                 <Form.Item
-                    name={`email`}
+                    name={`phone`}
                 >
-                    <Input placeholder="Your email" />
+                    <Input placeholder={user?.phone || "Your phone number"} value={user?.phone}/>
                 </Form.Item>
             </Col>,
         );
@@ -102,33 +125,7 @@ function Account() {
             </Col>,
         );
 
-        children.push(
-            <Col span={12} key={7}>
-                Phone
-                <Form.Item
-                    name={`phone`}
-                >
-                    <Input placeholder="Your phone number" />
-                </Form.Item>
-            </Col>,
-        );
-
-        children.push(
-            <Col span={12} key={8}>
-                Confirm password
-                <Form.Item
-                    name={`confirmpwd`}
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Type your password!',
-                        },
-                    ]}
-                >
-                    <Input placeholder="Your password" />
-                </Form.Item>
-            </Col>,
-        );
+        
 
 
         return children;

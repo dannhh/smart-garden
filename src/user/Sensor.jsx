@@ -13,10 +13,6 @@ const sock = io.connect('http://localhost:5000');
 function Sensor() {
     var myVar;
 
-    // function myFunction() {
-    //     myVar = setTimeout(showPage, 3000);
-    // }
-
     function showPage() {
         if (document.getElementById("loader")){
             document.getElementById("loader").style.display = "none";
@@ -32,16 +28,10 @@ function Sensor() {
     var [light, setLight] = useState([])
     var [time, setTime] = useState([])
     var [currentTime, setCurrentTime] = useState(0)
-    // var count = 0
 
     useEffect(() => {
-        // sock.on('/current', (data) => {
-        //     console.log(1)
-        //     setCurrentData(data);
-        // })
-        axios.get('/current').then((response) => {            
+        axios.get('/sensor/current').then((response) => {            
             setCurrentData(response);
-            // setCurrentTime(response.data.time)
             console.log(response.temp)
             showPage()
         })

@@ -27,19 +27,6 @@ function General() {
             setAllUser(response.data)
         })
     }, [])
-    const handleClick = () => {
-        // axios.post('/admin/add_user', {
-        //     name: values.firstname,
-        //     username : values.username,
-        //     password : values.password,
-        //     email : values.email,
-        //     phone : values.phone,
-        //     image : "",
-        //   })
-        //   .then(function (response) {
-        //     console.log(response);
-        //   })
-    };
 
     return (
         <div className="content">
@@ -47,16 +34,15 @@ function General() {
                 {
                     allUser?.map((user, index) => {
                         return (
-
                             <div className="card">
                                 <div className="image">
                                     <img src={gardenImg} alt="gardenImage" />
                                 </div>
                                 <div className="info">
                                     <h1>{user.username}</h1>
-                                    <button onClick={handleClick}>
+                                    {/* <button onClick={handleClick}>
                                         <AiOutlineDelete size={30} />
-                                    </button>
+                                    </button> */}
                                     <button className="user-button">
                                         <Link
                                             to={{
@@ -65,12 +51,9 @@ function General() {
                                             }}>
                                             View Infomation
                                         </Link>
-
                                     </button>
                                 </div>
                             </div>
-
-
                         );
                     })
                 }
@@ -78,12 +61,9 @@ function General() {
             <div className="line">
                 <div className="card">
                     <div className="info">
-
-
                         <Link
                             to={{ pathname: `/adduser` }}>
                             <AiFillPlusCircle size={100} />
-                            {/* <FontAwesomeIcon icon={FaUserPlus} /> */}
                         </Link>
 
                     </div>

@@ -13,32 +13,15 @@ function UserDetail() {
     var [garden, setGarden] = useState()
     var [user, setUser] = useState()
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const respGlobal = await axios(
-    //             '/user/all_garden/' + state.users.ID
-    //         );
-    //         const respRepos = await axios(
-    //             '/user/account_information/' + state.users.ID
-    //         );
-    //         setGarden(respGlobal.data)
-    //         setUser(respRepos.data)
-    //     }
-
-    // }, [])
-
     useEffect(() => {   
         axios.get('/user/all_garden/' + state.users.ID).then((response) => {
             setGarden(response.data)
-            console.log(response.data)
         })
     }, [])
 
     useEffect(() => {
         axios.get('/user/account_information/' + state.users.ID).then((response) => {
             setUser(response.data)
-            console.log(response.data)
-            // console.log(user)
         })
     }, [])
 

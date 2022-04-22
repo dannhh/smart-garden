@@ -8,9 +8,9 @@ import Login from './user/Login';
 import Sidebar from './admin/Sidebar';
 ReactDOM.render(
   <React.StrictMode>
-    {/* <SiderDemo /> */}
+    <SiderDemo />
     {/* <Login /> */}
-    <Sidebar />
+    {/* <Sidebar /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
