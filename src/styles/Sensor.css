@@ -7,9 +7,11 @@
     display: block;
     background-color: white;
     margin-bottom: 40px;
+    margin-left: 2%;
+    margin-right: 2%;
     padding: 40px;
     border-radius: 7px;
-    max-width: 95%;
+    width: 96%;
 }
 
 .content .header {
@@ -25,6 +27,7 @@
 .content .body .current {
     display: flex;
     flex-flow: row;
+
 }
 
 .content .body .current .card{
@@ -32,10 +35,10 @@
     border-radius: 7px;
     box-shadow: 0 4px 4px #ccc;
     background-color: white;
-    margin: 0 1.8%;
+    margin: 0 2%;
     display: flex;
     flex-flow: column;
-    width: 28%;
+    width: 33.33%;
 }
 .content .body .current .card .top-info {
     margin-top: 10px;

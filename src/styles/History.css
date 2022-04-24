@@ -3,7 +3,8 @@
 }
 .history {
     min-height: 100vh;
-    width: 95%;
+    width: 100%;
+    /* margin: 0 10% 0 10%; */
     display: block;
 }
 
@@ -64,10 +65,6 @@
 }
 #myDiv {
     display: none;
-}
-
-.ant-table-cell {
-
 }
 
 .red{

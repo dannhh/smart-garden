@@ -119,11 +119,11 @@ function History() {
                 <Row>
                     <Col span={12}><Search size="large" placeholder="input search text" onChange={filterData} style={{textAlign: 'start', position: 'relative', marginLeft: 0, marginBottom: 50, marginTop: 50, width: 300 }} /></Col>
                     <Col span={12}>
-                        <div className="all" style={{ margin: 50 }}>
-                            <Select size="large" defaultValue="temp" onChange={handleChange} style={{ width: 200, margin: '0 20px', }}>
-                                <Option value="temp">Temparature</Option>
-                                <Option value="humid">Humidity</Option>
-                                <Option value="light">Light intensity</Option>
+                        <div className="all" style={{ marginTop: 50, textAlign:'right' }}>
+                            <Select size="large" defaultValue="temp" onChange={handleChange} style={{ width: 200, margin: '0 20px', textAlign:'left'}}>
+                                <Option value="temp" style={{textAlign:'left'}}>Temparature</Option>
+                                <Option value="humid" style={{textAlign:'left'}}>Humidity</Option>
+                                <Option value="light" style={{textAlign:'left'}}>Light intensity</Option>
                             </Select>
                         </div>
                     </Col>

@@ -30,7 +30,7 @@ function UserDetail() {
         <div className="content">
             <div className="userinfo">
                 <card className='payment-card'>
-                    <h1>{user?.username}</h1>
+                    <h1>{user?.name}</h1>
                     <div
                         style={{
                             display: 'flex',

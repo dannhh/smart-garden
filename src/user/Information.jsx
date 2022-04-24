@@ -10,7 +10,7 @@ const { Option } = Select;
 function Information() {
     var [garden, setGarden] = useState()
 
-    useEffect(() => {   
+    useEffect(() => {
         axios.get('/user/garden_info/' + sessionStorage.getItem('garden_id')).then((response) => {
             setGarden(response.data)
         })
@@ -20,23 +20,25 @@ function Information() {
         <div className="content">
             <div className="userinfo">
                 <card className='payment-card'>
+                    <div style={{textAlign: 'center'}}>
+                        <img src={gardenImg} alt="gardenImage" className="img-garden" style={{width: '25%'}}/>
+                    </div>
+                    <h1 style={{fontWeight: 'bold'}}>{garden?.name || 'null'}</h1>
                     <div
                         style={{
                             display: 'flex',
                             flexFlow: 'row',
                         }}
                     >
-                        <div style={{ textAlign: 'left', width: '40%' }}>
-                            <p>Garden:</p>
+                        <div style={{ textAlign: 'left', width: '40%' , fontSize: '20px'}}>
                             <p>Location:</p>
-                            <p>Description:</p>
                             <p>Area:</p>
+                            <p>Description:</p>
                         </div>
-                        <div style={{ textAlign: 'right', width: '60%' }}>
-                            <p>{garden?.name || 'null'}</p>
+                        <div style={{ textAlign: 'right', width: '60%' , fontSize: '20px' }}>
                             <p>{garden?.location || 'null'}</p>
-                            <p>{garden?.description || 'null'}</p>
                             <p>{garden?.area || 'null'}</p>
+                            <p>{garden?.description || 'null'}</p>
                         </div>
                     </div>
                 </card>
