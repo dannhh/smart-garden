@@ -20,6 +20,7 @@ import Setting from '../admin/Setting';
 import AddUser from '../admin/AddUser';
 import '../styles/Sidebar.css'
 import UserDetail from "./UserDetail";
+import Logout from "../user/Logout";
 
 const { SubMenu } = Menu;
 const { Content, Footer, Sider } = Layout;
@@ -71,7 +72,7 @@ function Sidebar() {
                                 </Menu>
                                 <Menu className="bottom">
                                     <Menu.Item key="5" icon={<FiLogOut />}>
-                                        <Link to="/">Logout</Link>
+                                        <Link to="/logout">Logout</Link>
                                     </Menu.Item>
                                 </Menu>
                             </div>
@@ -95,6 +96,9 @@ function Sidebar() {
                                             </Route>
                                             <Route exact path="/adduser">
                                                 <AddUser />
+                                            </Route>
+                                            <Route exact path="/logout">
+                                                <Logout />
                                             </Route>
                                         </Suspense>
                                     </Switch>

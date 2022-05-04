@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import '../styles/AddUser.css'
 import gardenImg from '../img/plant-icon.png'
+import useToken from './useToken'
 import { Form, Row, Col, Input, Button, Select } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import {
@@ -14,19 +15,37 @@ const { Option } = Select;
 
 function AddUser() {
     const [form] = Form.useForm();
+    const { token, removeToken, setToken } = useToken();
     const onFinish = (values) => {
-        console.log(values )
-        axios.post('/admin/add_user', {
-            name: values.firstname,
-            username : values.username,
-            password : values.password,
-            email : values.email,
-            phone : values.phone,
-            image : "",
-          })
-          .then(function (response) {
-            console.log(response);
-          })
+        console.log(values)
+        axios({
+            method: "POST",
+            url: '/admin/add_user',
+            data: {
+                name: values.firstname,
+                username: values.username,
+                password: values.password,
+                email: values.email,
+                phone: values.phone,
+                image: "",
+            },
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+            .then((response) => {
+                if (response.data['success'] == false) {
+                    console.log(response)
+                    alert("Incorrect username or password");
+                }
+                else {
+                    alert("Successful!");
+                }
+
+            })
+            .catch((err) => {
+                alert("Incorrect username or password");
+            });
     };
     const getFields = () => {
         const children = [];
@@ -92,7 +111,7 @@ function AddUser() {
                 <Form.Item
                     name={`password`}
                 >
-                    <Input placeholder="Password" type="password"/>
+                    <Input placeholder="Password" type="password" />
                 </Form.Item>
             </Col>,
         );

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import 'antd/dist/antd.css';
 import '../styles/Setting.css'
 import { Col, Row, Select, Form, Input, Collapse, Modal, Radio, Button } from 'antd';
@@ -9,14 +10,14 @@ function handleChange(value) {
     console.log(`selected ${value}`);
 }
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
 const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
+    const [user, setUser] = useState()
+    useEffect(() => {
+        axios.get('/user/account_information/' + sessionStorage.getItem('user_id')).then((response) => {
+            setUser(response.data)
+        })
+    }, [])
     return (
         <Modal
             visible={visible}
@@ -29,10 +30,32 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                     .validateFields()
                     .then((values) => {
                         form.resetFields();
-                        onCreate(values);
+
+                            axios.post('/user/account_information/' + sessionStorage.getItem('user_id'), {
+                                ID: sessionStorage.getItem('user_id'),
+                                name: user.name,
+                                username: user.username,
+                                password: values.newpwd,
+                                email: user.email,
+                                phone: user.phone,
+                                image: user.image,
+                            })
+                                .then(function (response) {
+                                    console.log(response)
+                    
+                                    if (response.data.success == false) {
+                                        alert("Incorrect username or password");
+                                    }
+                                    else {
+                                        alert("Succesful");
+                                    }
+                                })
+                                .catch((err) => {
+                                    alert("Incorrect username or password");
+                                });
                     })
                     .catch((info) => {
-                        console.log('Validate Failed:', info);
+                        visible={}
                     });
             }}
         >
@@ -45,7 +68,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                 }}
             >
                 <Form.Item
-                    name="Your old password"
+                    name="pwd"
                     label="Your old password"
                     rules={[
                         {
@@ -54,10 +77,10 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input  type="password"/>
                 </Form.Item>
                 <Form.Item
-                    name="New password"
+                    name="newpwd"
                     label="New password"
                     rules={[
                         {
@@ -66,7 +89,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input  type="password"/>
                 </Form.Item>
             </Form>
         </Modal>
@@ -75,9 +98,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
 
 
 function Motor() {
-    function onChange(checked) {
-        console.log(`switch to ${checked}`);
-    }
+
     const [visible, setVisible] = useState(false);
 
     const onCreate = (values) => {
@@ -87,7 +108,7 @@ function Motor() {
 
     return (
         <div className='setting'>
-            <h1 style={{ height: 150 }}>Settings</h1>
+            <h1 style={{ height: 150 }}>Setting</h1>
             <div className='st-body'>
                 <Row>
                     <Col span={8}>
@@ -144,7 +165,7 @@ function Motor() {
                             <h3>Name</h3>
                         </Col>
                         <Col span={8} offset={8}>
-                            <h3>Jonny</h3>
+                            <h3>Nguyen Van A</h3>
                         </Col>
                         <Col>
 
@@ -155,7 +176,7 @@ function Motor() {
                             <h3>Username</h3>
                         </Col>
                         <Col span={8} offset={8}>
-                            <h3>jon_ny</h3>
+                            <h3>vana123</h3>
                         </Col>
                     </Row>
                     <Row>
@@ -163,7 +184,7 @@ function Motor() {
                             <h3>Email</h3>
                         </Col>
                         <Col span={8} offset={8}>
-                            <h3>jon@ny.com</h3>
+                            <h3>vana123@gmail.com</h3>
                         </Col>
                     </Row>
                 </div>

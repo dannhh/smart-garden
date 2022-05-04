@@ -26,8 +26,8 @@ function Account() {
         axios.post('/user/account_information/' + sessionStorage.getItem('user_id'), {
             ID: sessionStorage.getItem('user_id'),
             name: values.firstname,
-            username : values.username,
-            password : values.password,
+            username : user.username,
+            password : values.newpwd,
             email : values.email,
             phone : values.phone,
             image : "",
@@ -64,7 +64,7 @@ function Account() {
                         },
                     ]}
                 >
-                    <Input placeholder="Your old password" />
+                    <Input placeholder="Your old password" type="password"/>
                 </Form.Item>
             </Col>,
         );
@@ -92,7 +92,7 @@ function Account() {
                         },
                     ]}
                 >
-                    <Input placeholder="Your new password" />
+                    <Input placeholder="Your new password" type="password"/>
                 </Form.Item>
             </Col>,
         );
@@ -120,7 +120,7 @@ function Account() {
                         },
                     ]}
                 >
-                    <Input placeholder="Your new password" />
+                    <Input placeholder="Your new password" type="password"/>
                 </Form.Item>
             </Col>,
         );

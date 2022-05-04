@@ -21,7 +21,9 @@ function General() {
         if (!sessionStorage.getItem('garden_id')) {
             axios.get('/user/all_garden/' + sessionStorage.getItem('user_id')).then((response) => {
                 console.log(response)
-                sessionStorage.setItem('garden_id', response.data[0].gardenID)
+                if (response.data[0]){
+                    sessionStorage.setItem('garden_id', response.data[0].gardenID)
+                }
             })
         }
     }, [])

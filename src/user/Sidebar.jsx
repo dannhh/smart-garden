@@ -27,6 +27,7 @@ import Admin from '../admin/Sidebar';
 import Account from '../user/Account';
 import HistoryMotor from '../user/HistoryMotor';
 import '../styles/Sidebar.css'
+import Logout from "../user/Logout";
 
 const { SubMenu } = Menu;
 const { Content, Footer, Sider } = Layout;
@@ -91,7 +92,7 @@ function Sidebar() {
                                 </Menu>
                                 <Menu className="bottom">
                                     <Menu.Item key="9" icon={<FiLogOut />}>
-                                        <Link to="/">Logout</Link>
+                                        <Link to="/logout">Logout</Link>
                                     </Menu.Item>
                                 </Menu>
                             </div>
@@ -127,6 +128,9 @@ function Sidebar() {
                                             </Route>
                                             <Route exact path="/motorlog">
                                                 <HistoryMotor />
+                                            </Route>
+                                            <Route exact path="/logout">
+                                                <Logout />
                                             </Route>
                                         </Suspense>
                                     </Switch>

@@ -28,15 +28,23 @@ function Sensor() {
     var [light, setLight] = useState([])
     var [time, setTime] = useState([])
     var [currentTime, setCurrentTime] = useState(0)
+    var [currentTemp, setCurrentTemp] = useState(0)
+    var [currentHumid, setCurrentHumid] = useState(0)
+    var [currentLight, setCurrentLight] = useState(0)
 
     useEffect(() => {
-        axios.get('/sensor/current').then((response) => {            
-            setCurrentData(response);
-            console.log(response.temp)
+        axios.get('/sensor/current').then((response) => {
+            console.log(3)      
+
+            setCurrentTime(response.data[0].time)
+            setCurrentTemp(response.data[0].value)
+            setCurrentHumid(response.data[1].value)
+            setCurrentLight(response.data[2].value)
             showPage()
         })
         
-        axios.get('/history/bbc-test-json/10').then((response) => {            
+        axios.get('/history/bbc-test-json/10').then((response) => { 
+            console.log(2)           
             var time = response.data.time.map(x => x.substring(11, 19));
             setTemp(response.data.temp); 
             setHumid(response.data.humid);
@@ -45,9 +53,13 @@ function Sensor() {
         })
 
         sock.on('bbc-test-json', (data) => {
+            console.log(1)
             axios.get('/current').then((response) => {
                 var time_real_time = response.data.time.substring(11, 19);
-                setCurrentData(response);
+                setCurrentTime(response.data.time)
+                setCurrentTemp(response.data.temp)
+                setCurrentHumid(response.data.humid)
+                setCurrentLight(response.data.light)
                 setTemp(temp => [...temp, response.data.temp])
                 setTemp(temp => [...temp.slice(0, 0), ...temp.slice(1, 11)]);
                 setHumid(humid => [...humid, response.data.humid])
@@ -58,7 +70,6 @@ function Sensor() {
                 setTime(time => [...time.slice(0, 0), ...time.slice(1, 11)])
                 setCurrentTime(response.data.time)
             })
-
         });
 
         return () => sock.removeAllListeners('bbc-test-json');
@@ -79,14 +90,14 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Temperature</h2>
-                                <h1 style={ (currentData.data?.temp >= 21 && currentData.data?.temp <= 35 )? {color:'#08f25e'} : {color:'#ff3333'}}>
-                                    {currentData.data?.temp}
+                                <h1>
+                                    {currentTemp}
                                 </h1>
                             </div>
                         </div>
                         <div className="time">
                             <div className="line"></div>
-                            <h2>{currentData.data?.time}</h2>
+                            <h2>{currentTime}</h2>
                         </div>
                     </div>
                     <div className="card">
@@ -96,14 +107,14 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Humidity</h2>
-                                <h1 style={ (currentData.data?.humid >= 60 && currentData.data?.humid <= 80 )? {color:'#08f25e'} : {color:'#ff3333'}}>
-                                    {currentData.data?.humid}
+                                <h1>
+                                    {currentHumid}
                                 </h1>
                             </div>
                         </div>
                         <div className="time">
                             <div className="line"></div>
-                            <h2>{currentData.data?.time}</h2>
+                            <h2>{currentTime}</h2>
                         </div>
                     </div>
                     <div className="card">
@@ -113,14 +124,14 @@ function Sensor() {
                             </div>
                             <div className="value">
                                 <h2>Light</h2>
-                                <h1 style={ (currentData.data?.light >= 650 && currentData.data?.light <= 850 )? {color:'#08f25e'} : {color:'#ff3333'}}>
-                                    {currentData.data?.light}
+                                <h1>
+                                    {currentLight}
                                 </h1>
                             </div>
                         </div>
                         <div className="time">
                             <div className="line"></div>
-                            <h2>{currentData.data?.time}</h2>
+                            <h2>{currentTime}</h2>
                         </div>
                     </div>
                 </div>
