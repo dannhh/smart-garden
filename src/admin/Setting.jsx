@@ -98,6 +98,36 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
 
 
 function Motor() {
+    var [name, setName] = useState();
+    var [username, setUserName] = useState()
+    var [email, setEmail] = useState()
+
+    useEffect(() => {
+            axios({
+                method: "GET",
+                url: 'admin/all_admins',
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            })
+                .then((response) => {
+                    console.log(response)
+                    for(var i = 0; i < response.data.length; i++){
+
+                        if(response.data.ID == localStorage.getItem('user_id')){
+                            setName(response.data)
+                            setUserName(response.data)
+                            setEmail(response.data)
+                        }
+                    }
+                }).catch((error) => {
+                    if (error.response) {
+                        console.log(error.response)
+                        console.log(error.response.status)
+                        console.log(error.response.headers)
+                    }
+                })
+    }, [])
 
     const [visible, setVisible] = useState(false);
 
@@ -165,7 +195,7 @@ function Motor() {
                             <h3>Name</h3>
                         </Col>
                         <Col span={8} offset={8}>
-                            <h3>Nguyen Van A</h3>
+                            <h3>Nam</h3>
                         </Col>
                         <Col>
 
@@ -176,7 +206,7 @@ function Motor() {
                             <h3>Username</h3>
                         </Col>
                         <Col span={8} offset={8}>
-                            <h3>vana123</h3>
+                            <h3>admin1</h3>
                         </Col>
                     </Row>
                     <Row>
@@ -184,7 +214,7 @@ function Motor() {
                             <h3>Email</h3>
                         </Col>
                         <Col span={8} offset={8}>
-                            <h3>vana123@gmail.com</h3>
+                            <h3>admin@example.com</h3>
                         </Col>
                     </Row>
                 </div>

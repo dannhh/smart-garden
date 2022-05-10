@@ -36,7 +36,7 @@ function AddUser() {
             .then((response) => {
                 if (response.data['success'] == false) {
                     console.log(response)
-                    alert("Incorrect username or password");
+                    alert("User already exists!");
                 }
                 else {
                     alert("Successful!");
@@ -44,7 +44,7 @@ function AddUser() {
 
             })
             .catch((err) => {
-                alert("Incorrect username or password");
+                alert("User already exists");
             });
     };
     const getFields = () => {

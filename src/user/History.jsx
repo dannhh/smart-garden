@@ -30,13 +30,15 @@ function History() {
     const [tableFilter, setTableFilter] = useState([])
 
     useEffect(() => {
-        axios.get('/history/bbc-test-json/200').then((response) => {
+
+        axios.get('/user/sensor_history/' + sessionStorage.getItem('garden_id')).then((response) => {
+            response.data = response.data.sort(function(a, b){return a['ID'] - b['ID']});
             console.log(response.data)
-            for (var i = 0; i < response.data.humid.length; i++) {
-                setTemp(data => [...data, { time: response.data.time[i], value: response.data.temp[i], status: 'WARNING' }]);
-                setDataSource(data => [...data, { time: response.data.time[i], value: response.data.temp[i], status: 'WARNING' }]);
-                setHumid(data => [...data, { time: response.data.time[i], value: response.data.humid[i], status: 'NORMAL' }]);
-                setLight(data => [...data, { time: response.data.time[i], value: response.data.light[i], status: 'NORMAL' }]);
+            for (var i = 0; i < response.data.length; i = i+3) {
+                setTemp(data => [...data, { time: response.data[i]['time'], value: response.data[i]['value']}]);
+                setDataSource(data => [...data, { time: response.data[i]['time'], value: response.data[i]['value']}]);
+                setHumid(data => [...data, { time: response.data[i]['time'], value: response.data[i+1]['value']}]);
+                setLight(data => [...data, { time: response.data[i]['time'], value: response.data[i+2]['value']}]);
             }
             showPage()
         })
@@ -48,27 +50,13 @@ function History() {
             title: 'Time',
             dataIndex: 'time',
             key: 'time',
-            width: '40%',
+            width: '80%',
         },
         {
             title: 'Value',
             dataIndex: 'value',
             key: 'value',
-            width: '40%',
-        },
-        {
-            title: 'Status',
-            dataIndex: 'status',
-            key: 'status',
-            width: '40%',
-            render(text, record) {
-                return {
-                  props: {
-                    style: { color: text === "WARNING" ? "red" : "green" }
-                  },
-                  children: <div>{text}</div>
-                };
-            }
+            width: '20%',
         },
     ];
 

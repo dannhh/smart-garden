@@ -14,61 +14,110 @@ function Sensor() {
     var myVar;
 
     function showPage() {
-        if (document.getElementById("loader")){
+        if (document.getElementById("loader")) {
             document.getElementById("loader").style.display = "none";
         }
-        if (document.getElementById("myDiv")){
+        if (document.getElementById("myDiv")) {
             document.getElementById("myDiv").style.display = "block";
         }
     }
 
     var [currentData, setCurrentData] = useState({});
-    var [temp, setTemp] = useState([])
-    var [humid, setHumid] = useState([])
-    var [light, setLight] = useState([])
-    var [time, setTime] = useState([])
+    var [temp, setTemp] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    var [humid, setHumid] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    var [light, setLight] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    var [time, setTime] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     var [currentTime, setCurrentTime] = useState(0)
     var [currentTemp, setCurrentTemp] = useState(0)
     var [currentHumid, setCurrentHumid] = useState(0)
     var [currentLight, setCurrentLight] = useState(0)
+    var [nextTime, setNextTime] = useState(0)
+    var [nextTemp, setNextTemp] = useState(0)
+    var [nextHumid, setNextHumid] = useState(0)
+    var [nextLight, setNextLight] = useState(0)
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     useEffect(() => {
         axios.get('/sensor/current').then((response) => {
-            console.log(3)      
 
             setCurrentTime(response.data[0].time)
             setCurrentTemp(response.data[0].value)
             setCurrentHumid(response.data[1].value)
             setCurrentLight(response.data[2].value)
+
+            axios.post('/predict', {
+                "temp": parseInt(response.data[0].value),
+                "humidity": parseInt(response.data[1].value),
+                "month": parseInt(months.indexOf(response.data[0].time.toString().substring(8, 11))+1),
+                "date": parseInt(response.data[0].time.toString().substring(5, 7)),
+                "hour": parseInt(response.data[0].time.toString().substring(17, 19))
+                
+                
+            })
+                .then(function (response) {
+                    console.log(response)
+                    setNextTime(response.data.hour)
+                    setNextTemp(response.data.pred_temp.toFixed(2))
+                    setNextHumid(response.data.pred_humid.toFixed(0))
+                })
+    
+
             showPage()
         })
-        
-        axios.get('/history/bbc-test-json/10').then((response) => { 
-            console.log(2)           
-            var time = response.data.time.map(x => x.substring(11, 19));
-            setTemp(response.data.temp); 
-            setHumid(response.data.humid);
-            setLight(response.data.light);
-            setTime(time);
-        })
 
-        sock.on('bbc-test-json', (data) => {
-            console.log(1)
-            axios.get('/current').then((response) => {
-                var time_real_time = response.data.time.substring(11, 19);
-                setCurrentTime(response.data.time)
-                setCurrentTemp(response.data.temp)
-                setCurrentHumid(response.data.humid)
-                setCurrentLight(response.data.light)
-                setTemp(temp => [...temp, response.data.temp])
+        axios.get('/user/sensor_history/' + sessionStorage.getItem('garden_id')).then((response) => {
+            response.data = response.data.sort(function (a, b) { return a['ID'] - b['ID'] });
+
+            var count = 10
+            for (var i = response.data.length - 30; i >= 0; i = i + 3) {
+                count--;
+                var time_real_time = response.data[i]['time'].substring(11, 19);
+                setTemp(temp => [...temp, response.data[i]['value']])
                 setTemp(temp => [...temp.slice(0, 0), ...temp.slice(1, 11)]);
-                setHumid(humid => [...humid, response.data.humid])
+                setHumid(humid => [...humid, response.data[i + 1]['value']])
                 setHumid(humid => [...humid.slice(0, 0), ...humid.slice(1, 11)]);
-                setLight(light => [...light, response.data.light])
+                setLight(light => [...light, response.data[i + 2]['value']])
                 setLight(light => [...light.slice(0, 0), ...light.slice(1, 11)]);
                 setTime(time => [...time, time_real_time]);
                 setTime(time => [...time.slice(0, 0), ...time.slice(1, 11)])
-                setCurrentTime(response.data.time)
+                if (count == 0) {
+                    break;
+                }
+            }
+        })
+
+        sock.on('bbc-test-json', (data) => {
+            axios.get('/sensor/current').then((response) => {
+                console.log(response)
+                var time_real_time = response.data[0]['time'].substring(11, 19);
+                setTemp(temp => [...temp, response.data[0]['value']])
+                setTemp(temp => [...temp.slice(0, 0), ...temp.slice(1, 11)]);
+                setHumid(humid => [...humid, response.data[1]['value']])
+                setHumid(humid => [...humid.slice(0, 0), ...humid.slice(1, 11)]);
+                setLight(light => [...light, response.data[2]['value']])
+                setLight(light => [...light.slice(0, 0), ...light.slice(1, 11)]);
+                setTime(time => [...time, time_real_time]);
+                setTime(time => [...time.slice(0, 0), ...time.slice(1, 11)])
+
+                setCurrentTime(response.data[0].time)
+                setCurrentTemp(response.data[0].value)
+                setCurrentHumid(response.data[1].value)
+                setCurrentLight(response.data[2].value)
+
+                axios.post('/predict', {
+                    "temp": parseInt(response.data[0].value),
+                    "humidity": parseInt(response.data[1].value),
+                    "month": parseInt(months.indexOf(response.data[0].time.toString().substring(8, 11))+1),
+                    "date": parseInt(response.data[0].time.toString().substring(5, 7)),
+                    "hour": parseInt(response.data[0].time.toString().substring(17, 19))
+                })
+                    .then(function (response) {
+                        console.log(response)
+                        setNextTime(response.data.hour)
+                        setNextTemp(response.data.pred_temp.toFixed(2))
+                        setNextHumid(response.data.pred_humid.toFixed(0))
+                    })
+
             })
         });
 
@@ -76,12 +125,12 @@ function Sensor() {
     }, [])
 
     return (
-        <div className="content"  style={{margin:0}}>
+        <div className="content" style={{ margin: 0 }}>
             <div id="loader"></div>
             <div className="header">
                 <h1>Information from sensors</h1>
             </div>
-            <div style={{ display : "none"}} id="myDiv" className="body animate-bottom">
+            <div style={{ display: "none" }} id="myDiv" className="body animate-bottom">
                 <div className="current">
                     <div className="card">
                         <div className="top-info">
@@ -92,6 +141,11 @@ function Sensor() {
                                 <h2>Temperature</h2>
                                 <h1>
                                     {currentTemp}
+                                </h1>
+                                <span>Next hour:</span>
+                                <h1>
+                                    
+                                    {nextTemp}
                                 </h1>
                             </div>
                         </div>
@@ -109,6 +163,10 @@ function Sensor() {
                                 <h2>Humidity</h2>
                                 <h1>
                                     {currentHumid}
+                                </h1>
+                                <span>Next hour:</span>
+                                <h1>
+                                    {nextHumid}
                                 </h1>
                             </div>
                         </div>

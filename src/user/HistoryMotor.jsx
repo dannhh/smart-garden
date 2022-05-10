@@ -27,14 +27,28 @@ function History() {
     const [tableFilter, setTableFilter] = useState([])
 
     useEffect(() => {
-        axios.get('/history/bbc-test-json/5').then((response) => {
-            console.log(response.data)
-            for (var i = 0; i < response.data.humid.length; i++) {
-                setDataSource(data => [...data, { time: response.data.time[i], name: 'PUMP', status: 'OFF' }]);
-                setDataSource(data => [...data, { time: response.data.time[i], name: 'LIGHT', status: 'ON' }]);
+
+        axios.get('/user/device_history/' + sessionStorage.getItem('garden_id')).then((response) => {
+            for (var i = 0; i < response.data.light.length; i++) {
+                if (response.data.light[i]['status'] == true) {
+                        setDataSource(data => [...data, { time: response.data.light[i]['time'], name: 'LIGHT', status: 'ON' }]);
+                }
+                else {
+                    setDataSource(data => [...data, { time: response.data.light[i]['time'], name: 'LIGHT', status: 'OFF' }]);
+                }
             }
-            showPage()
-        })
+
+                for (var i = 0; i < response.data.pump.length; i++) {
+                    if (response.data.pump[i]['status'] == true) {
+                        setDataSource(data => [...data, { time: response.data.pump[i]['time'], name: 'PUMP', status: 'ON' }]);
+                    }
+                    else {
+                        setDataSource(data => [...data, { time: response.data.pump[i]['time'], name: 'PUMP', status: 'OFF' }]);
+                    }
+
+                }
+                showPage()
+            })
     }, [])
 
 
@@ -55,15 +69,7 @@ function History() {
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
-            width: '40%',
-            render(text, record) {
-                return {
-                  props: {
-                    style: { color: text === "OFF" ? "red" : "green" }
-                  },
-                  children: <div>{text}</div>
-                };
-            }
+            width: '40%'
         },
     ];
 
@@ -86,16 +92,16 @@ function History() {
     return (
         // onload={myFunction()} 
         <div className='history' style={{ margin: 0 }}>
-            <h1 style={{textAlign:'left'}}>
+            <h1 style={{ textAlign: 'left' }}>
                 History
-                <a href='/history' className="button" style={{float:'right'}}>
-                Sensors Log
+                <a href='/history' className="button" style={{ float: 'right' }}>
+                    Sensors Log
                 </a>
             </h1>
             <div id="loader"></div>
             <div style={{ display: "none" }} id="myDiv" className="body animate-bottom">
                 <Row>
-                    <Col span={12}><Search size="large" placeholder="input search text" onChange={filterData} style={{textAlign: 'start', position: 'relative', marginLeft: 0, marginBottom: 50, marginTop: 50, width: 300 }} /></Col>
+                    <Col span={12}><Search size="large" placeholder="input search text" onChange={filterData} style={{ textAlign: 'start', position: 'relative', marginLeft: 0, marginBottom: 50, marginTop: 50, width: 300 }} /></Col>
                 </Row>
 
                 <div sx={{ width: '100%', overflow: 'hidden' }}>

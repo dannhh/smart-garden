@@ -25,8 +25,6 @@ import Logout from "../user/Logout";
 const { SubMenu } = Menu;
 const { Content, Footer, Sider } = Layout;
 
-
-
 function Sidebar() {
 
     //create initial menuCollapse state using useState hook
